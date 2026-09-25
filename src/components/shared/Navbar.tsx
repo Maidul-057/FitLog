@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -11,9 +10,7 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <Link
-                href="/"
-                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+            <Link href="/" className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
                     pathname === "/"
                         ? "bg-[#1a2312] text-[#ccff00]"
                         : "text-[#9ca3af] hover:bg-white/10"
@@ -22,9 +19,7 @@ const Navbar = () => {
                 Workout
             </Link>
 
-            <Link
-                href="/my-plan"
-                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+            <Link href="/my-plan" className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
                     pathname === "/my-plan"
                         ? "bg-[#1a2312] text-[#ccff00]"
                         : "text-[#9ca3af] hover:bg-white/10"
@@ -36,7 +31,7 @@ const Navbar = () => {
     );
 
     return (
-        <nav className="bg-black sticky top-0 z-50 text-white">
+        <nav className="bg-black sticky top-0 z-10 text-white">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
 
                 {/* Logo */}
@@ -80,11 +75,9 @@ const Navbar = () => {
                     {navLinks}
                 </div>
             </div>
-            <div className="flex w-full flex-col">
-  <div className="divider divider-start"></div>
-  
-
-</div>
+            <div className="flex w-full flex-col ">
+                <div className="divider divider-start"></div>
+                        </div>
         </nav>
     );
 };
