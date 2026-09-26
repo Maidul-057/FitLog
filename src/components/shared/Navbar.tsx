@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useFitLog } from "@/context/FitLogContext";
+import logo from "@/assets/logo.png";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -37,7 +39,8 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#070707]/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-[18px] font-black tracking-[0.22em] text-white">
+        <Link href="/" className="flex items-center gap-3 text-sm font-black tracking-[0.25em] text-white text-[18px]">
+         <Image src={logo} alt="FitLog logo" width={24} height={24} className="h-6 w-6" />
           FITLOG
         </Link>
 
