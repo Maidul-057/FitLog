@@ -2,8 +2,8 @@
 
 FitLog is a dark, no-nonsense gym companion built with Next.js. Browse a library of workouts, dive into detailed exercise instructions, and build out **Today's Plan** or a **Saved for later** list — all persisted right in your browser.
 
- [**Live Site:**](https://fit-log-three-sigma.vercel.app/)
- [**Repository:**](https://github.com/Maidul-057/FitLog)
+ [**Live Site**](https://fit-log-three-sigma.vercel.app/)  
+ [**Repository**](https://github.com/Maidul-057/FitLog)
 
 ---
 
