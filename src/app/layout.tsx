@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Oswald } from "next/font/google";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-//import Footer from "@/components/shared/Footer";
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { FitLogProvider } from "@/context/FitLogContext";
 import { ToastContainer } from "react-toastify";
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="overflow-hidden rounded-[18px] bg-[#070707]">
               <Navbar />
               <div className="min-h-screen">{children}</div>
-             {/*  <Footer />*/}
+             <Footer />
             </div>
           </div>
           <ToastContainer position="top-right" theme="dark" pauseOnHover closeOnClick />
