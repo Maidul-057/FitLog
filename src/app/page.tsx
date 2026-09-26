@@ -1,11 +1,20 @@
-import React from 'react';
+import Banner from "@/components/homepage/Banner";
+import WorkoutLibrary from "@/components/homepage/WorkoutLibrary";
+import { fetchWorkouts } from "@/lib/api";
 
-const page = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+export default async function HomePage() {
+  let workouts: Awaited<ReturnType<typeof fetchWorkouts>> = [];
 
-export default page;
+  try {
+    workouts = await fetchWorkouts();
+  } catch {
+    workouts = [];
+  }
+
+  return (
+    <main className="bg-black text-white">
+      <Banner />
+      <WorkoutLibrary initialWorkouts={workouts} />
+    </main>
+  );
+}

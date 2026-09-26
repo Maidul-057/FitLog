@@ -1,86 +1,74 @@
 "use client";
 
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-// import { useWorkout } from "@/context/WorkoutContext";
+import { useState } from "react";
+import { useFitLog } from "@/context/FitLogContext";
 
-const Navbar = () => {
-    const pathname = usePathname();
-    // const { plan, saved } = useWorkout();
+export default function Navbar() {
+  const pathname = usePathname();
+  const { plan, saved, isHydrated } = useFitLog();
+  const [isOpen, setIsOpen] = useState(false);
 
-    const navLinks = (
-        <>
-            <Link href="/" className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                    pathname === "/"
-                        ? "bg-[#1a2312] text-[#ccff00]"
-                        : "text-[#9ca3af] hover:bg-white/10"
-                }`}
-            >
-                Workout
-            </Link>
+  const navLinks = (
+    <>
+      <Link
+        href="/"
+        onClick={() => setIsOpen(false)}
+        className={`rounded-full px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.2em] transition ${
+          pathname === "/" ? "bg-[#1a2312] text-[#ccff00]" : "text-zinc-300 hover:bg-white/5 hover:text-white"
+        }`}
+      >
+        Workout
+      </Link>
+      <Link
+        href="/my-plan"
+        onClick={() => setIsOpen(false)}
+        className={`rounded-full px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.2em] transition ${
+          pathname === "/my-plan" ? "bg-[#1a2312] text-[#ccff00]" : "text-zinc-300 hover:bg-white/5 hover:text-white"
+        }`}
+      >
+        My Plan
+      </Link>
+    </>
+  );
 
-            <Link href="/my-plan" className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                    pathname === "/my-plan"
-                        ? "bg-[#1a2312] text-[#ccff00]"
-                        : "text-[#9ca3af] hover:bg-white/10"
-                }`}
-            >
-                My Plan
-            </Link>
-        </>
-    );
+  return (
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#070707]/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="text-[18px] font-black tracking-[0.22em] text-white">
+          FITLOG
+        </Link>
 
-    return (
-        <nav className="bg-black sticky top-0 z-10 text-white">
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+        <div className="hidden items-center gap-2 md:flex">{navLinks}</div>
 
-                {/* Logo */}
-                <Link
-                    href="/"
-                    className="text-xl font-bold tracking-wider"
-                >
-                    FITLOG
-                </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/my-plan" className="flex items-center gap-1.5 text-[12px] font-semibold text-zinc-300 transition hover:text-white">
+            <span>Plan</span>
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ccff00] px-1 text-[12px] font-black leading-none text-black">
+              {isHydrated ? plan.length : 0}
+            </span>
+          </Link>
+          <Link href="/my-plan" className="flex items-center gap-1.5 text-[12px] font-semibold text-zinc-300 transition hover:text-white">
+            <span>Saved</span>
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-white/20 px-1 text-[12px] font-semibold leading-none text-zinc-300">
+              {isHydrated ? saved.length : 0}
+            </span>
+          </Link>
 
-                {/* Desktop Navigation */}
-                <div className="hidden items-center gap-2 md:flex">
-                    {navLinks}
-                </div>
+          <button type="button" aria-label="Toggle menu" className="inline-flex rounded-full border border-white/10 p-2 md:hidden" onClick={() => setIsOpen((value) => !value)}>
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
 
-                {/* Plan & Saved */}
-                <div className="flex items-center gap-2">
-
-                    {/* Plan */}
-                    <Link
-                        href="/my-plan"
-                        className=" bg-[#ccff00] px-4 py-2 text-sm font-bold text-[black]"
-                    >
-                        Plan 0
-                    </Link>
-
-                    {/* Saved */}
-                    <Link
-                        href="/my-plan"
-                        className=" border-white px-4 py-2 text-sm font-bold text-white"
-                    >
-                        Saved 0
-                    </Link>
-
-                </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            <div className="border-t border-white/10 px-4 py-3 md:hidden">
-                <div className="flex items-center justify-center gap-2">
-                    {navLinks}
-                </div>
-            </div>
-            <div className="flex w-full flex-col ">
-                <div className="divider divider-start"></div>
-                        </div>
-        </nav>
-    );
-};
-
-export default Navbar;
+      {isOpen ? (
+        <div className="border-t border-white/10 px-4 py-3 md:hidden">
+          <div className="flex flex-col gap-2">{navLinks}</div>
+        </div>
+      ) : null}
+    </nav>
+  );
+}
 

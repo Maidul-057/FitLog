@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# FitLog
 
-## Getting Started
+FitLog is a dark, no-nonsense workout library and planning app built with Next.js, TypeScript, and Tailwind CSS. It lets users browse a live workout library, save sessions for later, and build a five-lift plan for the day using persistent local storage.
 
-First, run the development server:
+## Technologies used
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS
+- Lucide React
+- React Toastify
+- FitLog API
+
+## Features
+
+1. Browse the full library of workouts from the official API.
+2. Search by workout name, muscle group, or equipment.
+3. Sort library cards by duration, calories, or rating.
+4. Add workouts to Today’s Plan with a max of five lifts.
+5. Save workouts for later and persist them across refreshes.
+6. View detailed workout instructions and training information.
+7. Track daily plan metrics for exercises, minutes, and calories.
+8. Responsive dark gym-inspired UI for mobile, tablet, and desktop.
+
+## API information
+
+The app uses the official FitLog API:
+
+- GET: https://api.abcz.workers.dev/api/fitlog
+- Single workout: https://api.abcz.workers.dev/api/fitlog/:id
+
+This app reads the API response directly and uses the real workout fields without inventing a separate data structure.
+
+## Local setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build and deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+The app is production-safe and uses dynamic route rendering and client-side persistence for plan and saved data.
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+src/
+  app/
+    globals.css
+    layout.tsx
+    page.tsx
+    my-plan/
+    workout/[id]/
+  components/
+    homepage/
+    my-plan/
+    shared/
+    workout/
+  context/
+    FitLogContext.tsx
+  lib/
+    api.ts
+  types/
+    fitlog.ts
+```
